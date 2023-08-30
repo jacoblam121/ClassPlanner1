@@ -1,19 +1,27 @@
-# This is a sample Python script.
+###
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import urllib.request
+import tabula
+import tabulate
+import pandas
+import string
 
+test_url = "https://admission.universityofcalifornia.edu/admission-requirements/transfer-requirements/preparing-to-transfer/general-education-igetc/igetc/"
+igetc_url = "https://pasadena.edu/academics/degrees-and-certificates/docs/IGETC-Fall-2023-and-Later.pdf"
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+response = urllib.request.urlopen(test_url).read()
 
+print(response)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+igetc_data = tabula.read_pdf(igetc_url, pages=1)
+igetc_data_clean = igetc_data[0].to_csv()
+for i in range(0, len(igetc_data_clean)):
+    if i == "◊": #u25ca is diamond
+        igetc_data_clean[i] = "^"
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(igetc_data_clean)
 
-print_hi("kyle")
+# with open("test.csv", "w") as file:
+#     file.write(igetc_data[0].to_csv())
 
+#print(tabulate(igetc_data[0], headers='keys', tablefmt='psql'))

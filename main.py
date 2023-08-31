@@ -21,4 +21,4 @@ def igetc_to_csv():
     igetc_data = tabula.read_pdf(igetc_url, pages=1)
     igetc_data[0].to_csv("test.csv", index=False)
 
-#assist_render()
+assist_render()

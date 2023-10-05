@@ -5,6 +5,7 @@ import tabula
 import tabulate
 import pandas
 import string
+import requests
 import selenium
 from selenium import webdriver
 from assist import assist_render

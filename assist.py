@@ -1,23 +1,30 @@
-# import os
-# import selenium
+import os
+import selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import urllib.request
+import pyautogui
 import tabula
+import random
+import requests
+import PyPDF2
+import csv
+import io
+from io import BytesIO
 import tabulate
 import pandas
 import string
-# import time
+import time
+
+
 # from PIL import Image
-# import io
-# import requests
 # from webdriver_manager.chrome import ChromeDriverManager
 # from selenium.common.exceptions import ElementClickInterceptedException
 
-#price_dollar = driver.find_element(By.CLASS_NAME, value="a-price-whole")
+# price_dollar = driver.find_element(By.CLASS_NAME, value="a-price-whole")
 # search_bar = driver.find_element(By.NAME, value="Institution")
 # print(search_bar.tag_name)
 
@@ -25,13 +32,11 @@ def test():
     return 0
 
 
-
 def assist_to_txt(current_assist_url):
-
     response = urllib.request.urlopen(current_assist_url).read()
     print(type(response))
     assist_data = tabula.read_pdf(current_assist_url, pages=1)
-    #assist_data[0].to_csv("test.csv", index=False)
+    # assist_data[0].to_csv("test.csv", index=False)
 
 
 # def assist_to_txt(current_assist_url):
@@ -42,10 +47,11 @@ def assist_to_txt(current_assist_url):
 #         file.write(response)
 
 
-def assist_driver_close(driver = webdriver):
+def assist_driver_close(driver=webdriver):
     driver.close()
 
-def assist_driver_quit(driver = webdriver):
+
+def assist_driver_quit(driver=webdriver):
     driver.quit()
 
 
@@ -72,7 +78,8 @@ def assist_render():
 
     college_window = driver.current_window_handle
 
-    major_search_bar = driver.find_element(By.XPATH, value='/html/body/app-root/div[2]/app-transfer/section[1]/app-report-items/section/div[1]/div[3]/input')
+    major_search_bar = driver.find_element(By.XPATH,
+                                           value='/html/body/app-root/div[2]/app-transfer/section[1]/app-report-items/section/div[1]/div[3]/input')
     major_search_bar.send_keys("Computer Science")
 
     major_click = driver.find_element(By.XPATH, value='//*[@id="autocomplete-options--destination"]/div[2]/a/div[4]')
